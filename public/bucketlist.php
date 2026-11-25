@@ -38,20 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $items = $bucketlist->getAll();
-
-public function add(string $name, string $description, int $priority): void
-{
-    $statement = $this->pdo->prepare(
-        'INSERT INTO bucketlist_items (name, description, priority)
-         VALUES (:name, :description, :priority)'
-    );
-
-    $statement->execute([
-        'name' => $name,
-        'description' => $description,
-        'priority' => $priority,
-    ]);
-}
 ?>
 
 <!DOCTYPE html>
