@@ -4,7 +4,54 @@ require_once __DIR__ . '/../src/Bucketlist.php';
 
 $pdo = (new Database())->connect();
 $bucketlist = new Bucketlist($pdo);
+
+$name = '';
+$description = '';
+$priority = '1';
+$errors = [];
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = is_string($_POST['name'] ?? null) ? trim($_POST['name']) : '';
+    $description = is_string($_POST['description'] ?? null) ? trim($_POST['description']) : '';
+    $priority = $_POST['priority'] ?? '';
+
+    if ($name === '') {
+        $errors[] = 'Skriv ett namn.';
+    } elseif (mb_strlen($name, 'UTF-8') > 150) {
+        $errors[] = 'Namnet får innehålla högst 150 tecken.';
+    }
+
+    if ($description === '') {
+        $errors[] = 'Skriv en beskrivning.';
+    }
+
+    if (!in_array($priority, ['1', '2', '3'], true)) {
+        $errors[] = 'Välj en prioritet mellan 1 och 3.';
+        $priority = '';
+    }
+
+    if ($errors === []) {
+        $bucketlist->add($name, $description, (int) $priority);
+        header('Location: bucketlist.php', true, 303);
+        exit;
+    }
+}
+
 $items = $bucketlist->getAll();
+
+public function add(string $name, string $description, int $priority): void
+{
+    $statement = $this->pdo->prepare(
+        'INSERT INTO bucketlist_items (name, description, priority)
+         VALUES (:name, :description, :priority)'
+    );
+
+    $statement->execute([
+        'name' => $name,
+        'description' => $description,
+        'priority' => $priority,
+    ]);
+}
 ?>
 
 <!DOCTYPE html>
