@@ -10,6 +10,21 @@ $description = '';
 $priority = '1';
 $errors = [];
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
+    $id = filter_input(INPUT_POST, 'delete_id', FILTER_VALIDATE_INT, [
+        'options' => ['min_range' => 1],
+    ]);
+
+    if ($id === false || $id === null) {
+        http_response_code(400);
+        exit('Ogiltigt id.');
+    }
+
+    $bucketlist->delete($id);
+    header('Location: bucketlist.php', true, 303);
+    exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = is_string($_POST['name'] ?? null) ? trim($_POST['name']) : '';
     $description = is_string($_POST['description'] ?? null) ? trim($_POST['description']) : '';
@@ -98,6 +113,12 @@ $items = $bucketlist->getAll();
                         <p>Prioritet: <?= (int) $item['priority'] ?></p>
                         <p>Tillagd: <?= htmlspecialchars($item['created_at']) ?></p>
                     </li>
+
+                    <form method="post" action="bucketlist.php">
+                        <button type="submit" name="delete_id" value="<?= (int) $item['id'] ?>">
+                            Ta bort
+                        </button>
+                    </form>
                 <?php endforeach; ?>
             </ul>
         <?php endif; ?>

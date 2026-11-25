@@ -18,16 +18,26 @@ class Bucketlist
     }
 
     public function add(string $name, string $description, int $priority): void
-        {
-            $statement = $this->pdo->prepare(
-                'INSERT INTO bucketlist_items (name, description, priority)
-                VALUES (:name, :description, :priority)'
-            );
+    {
+        $statement = $this->pdo->prepare(
+            'INSERT INTO bucketlist_items (name, description, priority)
+            VALUES (:name, :description, :priority)'
+        );
 
-            $statement->execute([
-                'name' => $name,
-                'description' => $description,
-                'priority' => $priority,
-            ]);
-        }
+        $statement->execute([
+            'name' => $name,
+            'description' => $description,
+            'priority' => $priority,
+        ]);
+    }
+
+    public function delete(int $id): void
+    {
+        $statement = $this->pdo->prepare(
+            'DELETE FROM bucketlist_items WHERE id = :id'
+        );
+
+        $statement->bindValue(':id', $id, PDO::PARAM_INT);
+        $statement->execute();
+    }
 }
