@@ -69,6 +69,38 @@ public function add(string $name, string $description, int $priority): void
     <main>
         <h1>Min bucketlist</h1>
 
+        <?php if ($errors !== []): ?>
+    <ul>
+        <?php foreach ($errors as $error): ?>
+            <li><?= htmlspecialchars($error) ?></li>
+        <?php endforeach; ?>
+    </ul>
+    <?php endif; ?>
+
+    <form method="post" action="bucketlist.php">
+        <p>
+            <label for="name">Namn</label>
+            <input id="name" name="name" type="text" maxlength="150" required
+                value="<?= htmlspecialchars($name) ?>">
+        </p>
+
+        <p>
+            <label for="description">Beskrivning</label>
+            <textarea id="description" name="description" required><?= htmlspecialchars($description) ?></textarea>
+        </p>
+
+        <p>
+            <label for="priority">Prioritet (1 är högst)</label>
+            <select id="priority" name="priority" required>
+                <option value="1" <?= $priority === '1' ? 'selected' : '' ?>>1</option>
+                <option value="2" <?= $priority === '2' ? 'selected' : '' ?>>2</option>
+                <option value="3" <?= $priority === '3' ? 'selected' : '' ?>>3</option>
+            </select>
+        </p>
+
+        <button type="submit">Lägg till</button>
+    </form>
+
         <?php if ($items === []): ?>
             <p>Din bucketlist är tom.</p>
         <?php else: ?>
