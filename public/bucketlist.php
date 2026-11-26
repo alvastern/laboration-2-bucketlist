@@ -111,7 +111,7 @@ $items = $bucketlist->getAll();
                         <h2><?= htmlspecialchars($item['name']) ?></h2>
                         <p><?= htmlspecialchars($item['description']) ?></p>
                         <p>Prioritet: <?= (int) $item['priority'] ?></p>
-                        <p>Tillagd: <?= htmlspecialchars($item['created_at']) ?></p>
+                        <p>Tillagd: <?= htmlspecialchars(substr($item['created_at'], 0, 10)) ?></p>
                     </li>
 
                     <form method="post" action="bucketlist.php">
