@@ -4,10 +4,13 @@ class Database
 {
     public function connect(): PDO
     {
-        $config = require __DIR__ . '/../config.local.php';
+        $serverConfig = '/userhome/alst2511/bucketlist-app/config.local.php';
+        $localConfig = __DIR__ . '/../config.local.php';
+
+        $config = require (is_file($serverConfig) ? $serverConfig : $localConfig);
 
         return new PDO(
-            'mysql:host=127.0.0.1;port=3306;dbname=bucketlist;charset=utf8mb4',
+            $config['dsn'],
             $config['username'],
             $config['password'],
             [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
