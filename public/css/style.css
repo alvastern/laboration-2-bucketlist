@@ -1,0 +1,277 @@
+:root {
+    color-scheme: light;
+    --surface: #fff;
+    --text: #2d183c;
+    --muted: #624873;
+    --plum: #401c60;
+    --accent: #6b2ead;
+    --accent-hover: #4f1e87;
+    --border: #dec9ef;
+    --input-border: #9a78b5;
+    --danger: #8f2449;
+    --danger-background: #ffe7ef;
+    --radius: 0.9rem;
+    --shadow: 0 4px 16px rgb(64 28 96 / 8%);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    background:
+        radial-gradient(ellipse at top right, #ffd8e4, transparent 48%),
+        linear-gradient(145deg, #f4e6ff, #fff1e5);
+    color: var(--text);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.6;
+}
+
+h1,
+h2 {
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+}
+
+h1 {
+    margin: 0 0 1.5rem;
+    color: var(--plum);
+    font-size: clamp(2rem, 1.5rem + 2.5vw, 3.4rem);
+    letter-spacing: -0.04em;
+}
+
+h2 {
+    margin: 0 0 0.75rem;
+    font-size: 1.35rem;
+}
+
+p {
+    overflow-wrap: anywhere;
+}
+
+a {
+    color: var(--accent);
+    text-underline-offset: 0.18em;
+}
+
+:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+}
+
+/* Meny */
+
+nav {
+    padding: 0.75rem 1rem;
+    background: var(--plum);
+}
+
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    max-width: 64rem;
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+}
+
+nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.5rem;
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+nav a:hover,
+nav a[aria-current="page"] {
+    background: #663387;
+}
+
+nav a:focus-visible {
+    outline-color: #ffe0a8;
+}
+
+/* Sidlayout och löptext */
+
+main {
+    width: min(64rem, calc(100% - 2rem));
+    margin-inline: auto;
+    padding-block: clamp(1.5rem, 5vw, 4rem);
+}
+
+main > section {
+    max-width: 68ch;
+}
+
+main > section + section {
+    margin-block-start: 2rem;
+}
+
+main > section p {
+    margin: 0 0 0.85rem;
+}
+
+/* Formulär */
+
+.add-form {
+    display: grid;
+    gap: 1rem;
+    margin: 0;
+    padding: clamp(1rem, 3vw, 1.75rem);
+    border: 1px solid #d0adeb;
+    border-radius: var(--radius);
+    background: #f2e1ff;
+    box-shadow: var(--shadow);
+}
+
+.add-form p {
+    min-width: 0;
+    margin: 0;
+}
+
+.add-form label {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+}
+
+.add-form input,
+.add-form textarea,
+.add-form select {
+    display: block;
+    width: 100%;
+    min-height: 44px;
+    padding: 0.6rem 0.75rem;
+    border: 1px solid var(--input-border);
+    border-radius: 0.5rem;
+    background: var(--surface);
+    color: var(--text);
+    font: inherit;
+}
+
+.add-form textarea {
+    min-height: 7rem;
+    resize: vertical;
+}
+
+button {
+    min-height: 44px;
+    padding: 0.55rem 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    font: inherit;
+    font-weight: 650;
+    cursor: pointer;
+}
+
+.add-form button {
+    background: var(--accent);
+    color: #fff;
+}
+
+.add-form button:hover {
+    background: var(--accent-hover);
+}
+
+.form-errors {
+    margin: 0 0 1rem;
+    padding: 0.75rem 1rem 0.75rem 2rem;
+    border: 1px solid #e9b7c7;
+    border-radius: var(--radius);
+    background: var(--danger-background);
+    color: var(--danger);
+}
+
+/* Bucketlistkort */
+
+.bucketlist {
+    display: grid;
+    gap: 1rem;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.bucketlist > li {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 1.25rem;
+    border: 1px solid var(--border);
+    border-top: 4px solid #a957d0;
+    border-radius: var(--radius);
+    background: #fffaf5;
+    box-shadow: var(--shadow);
+}
+
+.bucketlist > li:nth-child(even) {
+    border-top-color: #d8657e;
+    background: #fff3f6;
+}
+
+.bucketlist h2 {
+    margin-bottom: 0.5rem;
+}
+
+.bucketlist p {
+    margin: 0 0 0.5rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.bucketlist p:first-of-type {
+    margin-bottom: 0.9rem;
+    color: var(--text);
+    font-size: 1rem;
+    white-space: pre-wrap;
+}
+
+.bucketlist > li > form {
+    align-self: flex-end;
+    margin: auto 0 0;
+    padding-top: 0.75rem;
+}
+
+.bucketlist button {
+    border-color: #e9b7c7;
+    background: var(--danger-background);
+    color: var(--danger);
+}
+
+.bucketlist button:hover {
+    background: #f7cbdc;
+}
+
+/* Bredare skärmar */
+
+@media (min-width: 42rem) {
+    .add-form {
+        grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+        align-items: end;
+    }
+
+    .add-form p:nth-of-type(2),
+    .add-form button {
+        grid-column: 1 / -1;
+    }
+
+    .add-form p:nth-of-type(3) {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .add-form button {
+        justify-self: start;
+    }
+
+    .bucketlist {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}

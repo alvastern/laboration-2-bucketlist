@@ -71,14 +71,14 @@ $items = $bucketlist->getAll();
         <h1>Min bucketlist</h1>
 
         <?php if ($errors !== []): ?>
-    <ul>
+    <ul class="form-errors">
         <?php foreach ($errors as $error): ?>
             <li><?= htmlspecialchars($error) ?></li>
         <?php endforeach; ?>
     </ul>
     <?php endif; ?>
 
-    <form method="post" action="bucketlist.php">
+    <form method="post" action="bucketlist.php" class="add-form">
         <p>
             <label for="name">Namn</label>
             <input id="name" name="name" type="text" maxlength="150" required
@@ -105,20 +105,20 @@ $items = $bucketlist->getAll();
         <?php if ($items === []): ?>
             <p>Din bucketlist är tom.</p>
         <?php else: ?>
-            <ul>
+            <ul class="bucketlist">
                 <?php foreach ($items as $item): ?>
                     <li>
                         <h2><?= htmlspecialchars($item['name']) ?></h2>
                         <p><?= htmlspecialchars($item['description']) ?></p>
                         <p>Prioritet: <?= (int) $item['priority'] ?></p>
                         <p>Tillagd: <?= htmlspecialchars(substr($item['created_at'], 0, 10)) ?></p>
-                    </li>
 
-                    <form method="post" action="bucketlist.php">
-                        <button type="submit" name="delete_id" value="<?= (int) $item['id'] ?>">
-                            Ta bort
-                        </button>
-                    </form>
+                        <form method="post" action="bucketlist.php">
+                            <button type="submit" name="delete_id" value="<?= (int) $item['id'] ?>">
+                                Ta bort
+                            </button>
+                        </form>
+                    </li>
                 <?php endforeach; ?>
             </ul>
         <?php endif; ?>
