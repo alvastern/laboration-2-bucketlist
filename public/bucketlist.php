@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($name === '') {
         $errors[] = 'Skriv ett namn.';
-    } elseif (mb_strlen($name, 'UTF-8') > 150) {
+    } elseif (preg_match('/^.{151}/us', $name) === 1) {
         $errors[] = 'Namnet får innehålla högst 150 tecken.';
     }
 

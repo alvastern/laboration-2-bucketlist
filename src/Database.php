@@ -4,10 +4,11 @@ class Database
 {
     public function connect(): PDO
     {
-        $serverConfig = '/userhome/alst2511/bucketlist-app/config.local.php';
+        $serverConfig = __DIR__ . '/../config.miun.php';
         $localConfig = __DIR__ . '/../config.local.php';
 
-        $config = require (is_file($serverConfig) ? $serverConfig : $localConfig);
+        $configFile = is_file($serverConfig) ? $serverConfig : $localConfig;
+        $config = require $configFile;
 
         return new PDO(
             $config['dsn'],
