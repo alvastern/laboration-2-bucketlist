@@ -24,7 +24,12 @@
             <br>
             En tredje sak är att jag avnände ChatGPT för att ta fram valideringar för mitt 
             formulär. Detta är något som jag gjort många gånger och känner att jag kan. Jag provade 
-            därmed att använda AI för att at fram ett förslag på hur valideringarna kunde se ut.  
+            därmed att använda AI för att at fram ett förslag på hur valideringarna kunde se ut.<br>
+            <br>
+            En fjärde sak jag använde generativ AI till var att skapa CSS. Jag har skapat CSS 
+            många gånger och känner att jag har bra koll på det. Därför provade jag att beskriva 
+            hur jag ville att webbapplikationen skulle se ut för ChatGPT och fick då ett förslag 
+            på CSS som jag kunde använda.  
         </p>
 
         <section>
@@ -32,7 +37,11 @@
             <p>Mina slutsatser gällande att använda generativ AI som verktyg vid utveckling är att 
                 det främst har sparat mig mycket tid. Särskilt när det uppstod problem under 
                 utvecklingens gång. Då kunde jag använda AI för att snabbt felsöka och få förslag på 
-                lösningar. Detta är något som tidigare tagit mycket tid och varit utmanande.
+                lösningar. Detta är något som tidigare tagit mycket tid och varit utmanande.<br>
+                <br>
+                Även när det kommer till CSS så var generativ AI något som sparade mig mycket tid. 
+                Istället för att sitta och skriva all CSS själv, kunde AIn snabbt ta fram CSS som 
+                speglade min vision på ett mycket bra sätt.
             </p>
         </section>
     </main>
